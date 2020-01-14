@@ -1,0 +1,8 @@
+com\mycompany\database2docker\JAXRSConfiguration.class
+com\mycompany\database2docker\services\BackEndService.class
+com\mycompany\database2docker\model\Dao.class
+com\mycompany\database2docker\services\Format.class
+com\mycompany\database2docker\exceptions\AppException.class
+com\mycompany\database2docker\resources\AlumnosResource.class
+com\mycompany\database2docker\model\impl\WsDao.class
+com\mycompany\database2docker\model\Alumno.class
