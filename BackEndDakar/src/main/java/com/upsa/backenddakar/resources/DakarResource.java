@@ -88,7 +88,6 @@ public class DakarResource {
         
     }
     
-    
     //Parte para ver etapas y etapa individual
     @Path("/etapas")
     @GET

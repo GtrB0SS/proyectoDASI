@@ -45,7 +45,6 @@ public class OracleDao implements Dao {
                         + "                                     AND   R.ID_VEHICULO = V.ID_VEHICULO                              ")) {
             
             if (resultSet.next()) {
-                System.out.println("Aqio entra");
                 do {
                     
                     Vehiculo v = new Vehiculo();
