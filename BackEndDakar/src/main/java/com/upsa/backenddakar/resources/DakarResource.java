@@ -28,12 +28,14 @@ public class DakarResource {
     @Inject
     private Dao dao;
     
+    //Parte para ver resultados y resultado individual
     @Path("/resultados")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response selectResultados(){
         
         try {
+            
             List<Resultado> resultados = dao.selectResultados();
             
             return Response
@@ -47,7 +49,7 @@ public class DakarResource {
         
     }
     
-    
+    //Parte para ver vehiculos y vehiculo individual
     @Path("/vehiculos")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -58,6 +60,25 @@ public class DakarResource {
             
             return Response
                 .ok("ok").entity( new GenericEntity< List<Vehiculo> > (vehiculos) {})
+                .build();
+            
+        } catch (AppException ex) {
+            return Response.status( Response.Status.BAD_REQUEST ).build();
+        }
+        
+        
+    }
+    
+    @Path("/vehiculos/{idVehiculo}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response selectVehiculo(@PathParam("idVehiculo") String idVehiculo){
+        
+        try {
+            Vehiculo vehiculo = dao.selectVehiculo(idVehiculo);
+            
+            return Response
+                .ok("ok").entity( new GenericEntity< Vehiculo > (vehiculo) {})
                 .build();
             
         } catch (AppException ex) {

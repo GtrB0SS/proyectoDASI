@@ -14,7 +14,7 @@ public class EtapaNotFoundException extends AppException{
 
     public EtapaNotFoundException(String idEtapa)
     {
-        super( String.format("No existe el alumno con expediente %s", idEtapa) );
+        super( String.format("No existe la etapa con id %s", idEtapa) );
         this.idEtapa = idEtapa;
     }
 

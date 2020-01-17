@@ -13,16 +13,16 @@ public class Resultado {
     private String idResultado;
     private Etapa etapa;
     private Vehiculo vehiculo;
-    private int recorrido;
+    private String tiempo;
 
     public Resultado() {
     }
 
-    public Resultado(String idResultado, Etapa etapa, Vehiculo vehiculo, int recorrido) {
+    public Resultado(String idResultado, Etapa etapa, Vehiculo vehiculo, String tiempo) {
         this.idResultado = idResultado;
         this.etapa = etapa;
         this.vehiculo = vehiculo;
-        this.recorrido = recorrido;
+        this.tiempo = tiempo;
     }
 
     public String getIdResultado() {
@@ -49,17 +49,17 @@ public class Resultado {
         this.vehiculo = vehiculo;
     }
 
-    public int getRecorrido() {
-        return recorrido;
+    public String getTiempo() {
+        return tiempo;
     }
 
-    public void setRecorrido(int recorrido) {
-        this.recorrido = recorrido;
+    public void setTiempo(String tiempo) {
+        this.tiempo = tiempo;
     }
 
     @Override
     public String toString() {
-        return "Resultado{" + "idResultado=" + idResultado + ", etapa=" + etapa + ", vehiculo=" + vehiculo + ", recorrido=" + recorrido + '}';
+        return "Resultado{" + "idResultado=" + idResultado + ", etapa=" + etapa + ", vehiculo=" + vehiculo + ", recorrido=" + tiempo + '}';
     }
     
     
