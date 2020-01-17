@@ -5,10 +5,19 @@
  */
 package com.mycompany.frontenddakar.model;
 
+import java.util.List;
+
 /**
  *
  * @author albertogarciacampo
  */
 public interface Dao {
     
+    public List<Resultado> selectResultados();
+    public List<Vehiculo> selectVehiculos();
+    public List<Etapa> selectEtapas();
+    
+    
+    public Vehiculo selectVehiculo(String idVehiculo);
+    public Etapa selectEtapa(String idEtapa);
 }
