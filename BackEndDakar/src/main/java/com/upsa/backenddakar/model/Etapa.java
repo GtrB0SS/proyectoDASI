@@ -41,6 +41,11 @@ public class Etapa {
         this.fecha = fecha;
     }
 
+    @Override
+    public String toString() {
+        return "Etapa{" + "idEtapa=" + idEtapa + ", fecha=" + fecha + ", recorrido=" + recorrido + '}';
+    }
+
     public int getRecorrido() {
         return recorrido;
     }

@@ -15,6 +15,7 @@ import java.util.List;
 public interface Dao {
     
     public List<Resultado> selectResultados() throws AppException;
-    
+    public List<Vehiculo> selectVehiculos() throws AppException;
+    public List<Etapa> selectEtapas() throws AppException;
     
 }

@@ -56,6 +56,11 @@ public class Resultado {
     public void setRecorrido(int recorrido) {
         this.recorrido = recorrido;
     }
+
+    @Override
+    public String toString() {
+        return "Resultado{" + "idResultado=" + idResultado + ", etapa=" + etapa + ", vehiculo=" + vehiculo + ", recorrido=" + recorrido + '}';
+    }
     
     
 }

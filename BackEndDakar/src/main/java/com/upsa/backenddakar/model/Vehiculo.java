@@ -87,6 +87,11 @@ public class Vehiculo {
     public void setClasificacion(String clasificacion) {
         this.clasificacion = clasificacion;
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", nombreEquipo=" + nombreEquipo + ", tipo=" + tipo + ", potencia=" + potencia + ", piloto=" + piloto + ", copiloto=" + copiloto + ", clasificacion=" + clasificacion + '}';
+    }
     
     
     

@@ -37,8 +37,8 @@ public class OracleDao implements Dao{
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT R.ID_RESULTADO, R.RECORRIDO, V.ID_VEHICULO, V.NOMBRE_EQUIPO, V.TIPO, V.POTENCIA, V.PILOTO, V.COPILOTO, V.CLASIFICACION, E.ID_ETAPA, E.FECHA, E.RECORRIDO " + 
-                                                          "  FROM RESULTADO R, VEHICULO V, ETAPA E"
-                     + "                                     WHERE R.ID_ETAPA = E.ID_ETAPA"
+                                                          "  FROM RESULTADO R, VEHICULO V, ETAPA E "
+                     + "                                     WHERE R.ID_ETAPA = E.ID_ETAPA "
                      + "                                     AND   R.ID_VEHICULO = V.ID_VEHICULO                              ")
             )
         {
@@ -75,6 +75,72 @@ public class OracleDao implements Dao{
           }
         return resultados;
     }
+
+    @Override
+    public List<Vehiculo> selectVehiculos() throws AppException {
+        
+        List<Vehiculo> vehiculos = new LinkedList<>();
+        
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT V.ID_VEHICULO, V.NOMBRE_EQUIPO, V.TIPO, V.POTENCIA, V.PILOTO, V.COPILOTO, V.CLASIFICACION " + 
+                                                          "  FROM VEHICULO V")
+            )
+        {
+            if ( resultSet.next() )
+            {
+                do
+                {
+                    Vehiculo v = new Vehiculo();
+                    v.setIdVehiculo(resultSet.getString(1));
+                    v.setNombreEquipo(resultSet.getString(2));
+                    v.setTipo(resultSet.getString(3));
+                    v.setPotencia(resultSet.getInt(4));
+                    v.setPiloto(resultSet.getString(5));
+                    v.setCopiloto(resultSet.getString(6));
+                    v.setClasificacion(resultSet.getString(7));
+                    
+                    vehiculos.add(v);
+                } while ( resultSet.next() );
+            }
+        } catch (SQLException sqlException)
+          {
+             throw new SqlAppException(sqlException);
+          }
+        return vehiculos;
+    }
+
+    @Override
+    public List<Etapa> selectEtapas() throws AppException {
+        List<Etapa> etapas = new LinkedList<>();
+        
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT E.ID_ETAPA, E.FECHA, E.RECORRIDO " + 
+                                                          "  FROM ETAPA E  ")
+            )
+        {
+            if ( resultSet.next() )
+            {
+                do
+                {
+                    
+                    Etapa e = new Etapa();
+                    e.setIdEtapa(resultSet.getString(1));
+                    e.setFecha(resultSet.getString(2));
+                    e.setRecorrido(resultSet.getInt(3));
+                    
+                    etapas.add(e);
+                } while ( resultSet.next() );
+            }
+        } catch (SQLException sqlException)
+          {
+             throw new SqlAppException(sqlException);
+          }
+        return etapas;
+    }
+    
+    
     
     
     
