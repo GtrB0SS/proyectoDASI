@@ -5,13 +5,16 @@
  */
 package com.upsa.backenddakar.model;
 
+import com.upsa.backenddakar.exceptions.AppException;
+import java.util.List;
+
 /**
  *
  * @author Carlos
  */
 public interface Dao {
     
-    public String prueba();
+    public List<Resultado> selectResultados() throws AppException;
     
     
 }

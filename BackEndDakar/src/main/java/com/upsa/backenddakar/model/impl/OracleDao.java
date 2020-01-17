@@ -5,7 +5,12 @@
  */
 package com.upsa.backenddakar.model.impl;
 
+import com.upsa.backenddakar.exceptions.AppException;
+import com.upsa.backenddakar.exceptions.SqlAppException;
 import com.upsa.backenddakar.model.Dao;
+import com.upsa.backenddakar.model.Etapa;
+import com.upsa.backenddakar.model.Resultado;
+import com.upsa.backenddakar.model.Vehiculo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +29,52 @@ public class OracleDao implements Dao{
     @Resource(lookup = "java:app/jdbc/database")
     private DataSource dataSource;
 
+    @Override
+    public List<Resultado> selectResultados() throws AppException{
+        
+        List<Resultado> resultados = new LinkedList<>();
+        
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT R.ID_RESULTADO, R.RECORRIDO, V.ID_VEHICULO, V.NOMBRE_EQUIPO, V.TIPO, V.POTENCIA, V.PILOTO, V.COPILOTO, V.CLASIFICACION, E.ID_ETAPA, E.FECHA, E.RECORRIDO " + 
+                                                          "  FROM RESULTADO R, VEHICULO V, ETAPA E"
+                     + "                                     WHERE R.ID_ETAPA = E.ID_ETAPA"
+                     + "                                     AND   R.ID_VEHICULO = V.ID_VEHICULO                              ")
+            )
+        {
+            if ( resultSet.next() )
+            {
+                do
+                {
+                    Vehiculo v = new Vehiculo();
+                    v.setIdVehiculo(resultSet.getString(3));
+                    v.setNombreEquipo(resultSet.getString(4));
+                    v.setTipo(resultSet.getString(5));
+                    v.setPotencia(resultSet.getInt(6));
+                    v.setPiloto(resultSet.getString(7));
+                    v.setCopiloto(resultSet.getString(8));
+                    v.setClasificacion(resultSet.getString(9));
+                    
+                    Etapa e = new Etapa();
+                    e.setIdEtapa(resultSet.getString(10));
+                    e.setFecha(resultSet.getString(11));
+                    e.setRecorrido(resultSet.getInt(12));
+                    
+                    Resultado resultado = new Resultado();
+                    resultado.setIdResultado(resultSet.getString(1));
+                    resultado.setRecorrido(resultSet.getInt(2));
+                    resultado.setEtapa(e);
+                    resultado.setVehiculo(v);
+                    
+                    resultados.add(resultado);
+                } while ( resultSet.next() );
+            }
+        } catch (SQLException sqlException)
+          {
+             throw new SqlAppException(sqlException);
+          }
+        return resultados;
+    }
     
     
     

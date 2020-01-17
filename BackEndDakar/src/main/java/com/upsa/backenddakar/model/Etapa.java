@@ -13,13 +13,13 @@ import java.sql.Date;
  */
 public class Etapa {
     private String idEtapa;
-    private Date fecha;
+    private String fecha;
     private int recorrido;
 
     public Etapa() {
     }
 
-    public Etapa(String idEtapa, Date fecha, int recorrido) {
+    public Etapa(String idEtapa, String fecha, int recorrido) {
         this.idEtapa = idEtapa;
         this.fecha = fecha;
         this.recorrido = recorrido;
@@ -33,11 +33,11 @@ public class Etapa {
         this.idEtapa = idEtapa;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
