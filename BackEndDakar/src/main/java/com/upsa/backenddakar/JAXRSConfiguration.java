@@ -9,11 +9,20 @@ import javax.ws.rs.core.Application;
  * @author Juneau
  */
 
+//@DataSourceDefinition(name = "java:app/jdbc/database",
+//                      className = "oracle.jdbc.pool.OracleDataSource",                      
+//                      url="jdbc:oracle:thin:@localhost:1521:xe",
+//                      user = "carlos",
+//                      password = "carlos",
+//                      minPoolSize = 1,
+//                      maxPoolSize = 3
+//                     )
+
 @DataSourceDefinition(name = "java:app/jdbc/database",
                       className = "oracle.jdbc.pool.OracleDataSource",                      
-                      url="jdbc:oracle:thin:@localhost:1521:xe",
-                      user = "carlos",
-                      password = "carlos",
+                      url="jdbc:oracle:thin:@172.25.88.25:1521:alumnos",
+                      user = "chernandezre",
+                      password = "chernandezre",
                       minPoolSize = 1,
                       maxPoolSize = 3
                      )
