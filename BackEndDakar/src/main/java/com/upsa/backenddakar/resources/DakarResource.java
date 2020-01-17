@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -66,6 +67,8 @@ public class DakarResource {
         
     }
     
+    
+    //Parte para ver etapas y etapa individual
     @Path("/etapas")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,6 +79,23 @@ public class DakarResource {
             
             return Response
                 .ok("ok").entity( new GenericEntity< List<Etapa> > (etapas) {})
+                .build();
+            
+        } catch (AppException ex) {
+            return Response.status( Response.Status.BAD_REQUEST ).build();
+        }
+        
+    }
+    
+    @Path("/etapas/{idEtapa}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response selectEtapa(@PathParam("idEtapa") String idEtapa){
+        
+        try {
+            Etapa etapa = dao.selectEtapa(idEtapa);
+            return Response
+                .ok("ok").entity( new GenericEntity< Etapa > (etapa) {})
                 .build();
             
         } catch (AppException ex) {

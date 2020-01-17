@@ -18,4 +18,5 @@ public interface Dao {
     public List<Vehiculo> selectVehiculos() throws AppException;
     public List<Etapa> selectEtapas() throws AppException;
     
+    public Etapa selectEtapa(String idEtapa) throws AppException;
 }

@@ -18,11 +18,12 @@ public class Vehiculo {
     private String piloto;
     private String copiloto;
     private String clasificacion;
+    private String tiempoTotal;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String idVehiculo, String nombreEquipo, String tipo, int potencia, String piloto, String copiloto, String clasificacion) {
+    public Vehiculo(String idVehiculo, String nombreEquipo, String tipo, int potencia, String piloto, String copiloto, String clasificacion, String tiempoTotal) {
         this.idVehiculo = idVehiculo;
         this.nombreEquipo = nombreEquipo;
         this.tipo = tipo;
@@ -30,6 +31,7 @@ public class Vehiculo {
         this.piloto = piloto;
         this.copiloto = copiloto;
         this.clasificacion = clasificacion;
+        this.tiempoTotal = tiempoTotal;
     }
 
     public String getIdVehiculo() {
@@ -88,6 +90,15 @@ public class Vehiculo {
         this.clasificacion = clasificacion;
     }
 
+    public String getTiempoTotal() {
+        return tiempoTotal;
+    }
+
+    public void setTiempoTotal(String tiempoTotal) {
+        this.tiempoTotal = tiempoTotal;
+    }
+
+    
     @Override
     public String toString() {
         return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", nombreEquipo=" + nombreEquipo + ", tipo=" + tipo + ", potencia=" + potencia + ", piloto=" + piloto + ", copiloto=" + copiloto + ", clasificacion=" + clasificacion + '}';
