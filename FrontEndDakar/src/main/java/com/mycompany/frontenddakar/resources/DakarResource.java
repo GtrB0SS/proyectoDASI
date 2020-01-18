@@ -27,118 +27,114 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author 
+ * @author
  */
 @Path("/dakar")
 public class DakarResource {
-    
-    
-     @Inject
+
+    @Inject
     private Dao dao;
-     
-     @Inject
+
+    @Inject
     private Models models;
-    
+
     @Inject
     private BindingResult bindingResult;
-    
+
     @GET
     @Controller
     @Path("/resultados")
     @View("/jsps/resultados.jsp")
-    public void requestResultados()
-    {
+    public void requestResultados() {
         List<Resultado> resultados = dao.requestResultados();
-        
+
         models.put("resultados", resultados);
-        
-//        return Response.ok()
-//                       .entity( new GenericEntity< List<Resultado> > ( dao.requestResultados() ) {} )                
-//                       .build();
+
     }
-    
-        @GET
+
+    @GET
     @Path("etapas")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response requestEtapas()
-    {
-        return Response.ok()
-                       .entity( new GenericEntity< List<Etapa> > ( dao.requestEtapas() ) {} )                
-                       .build();
+    @Controller
+    @View("/jsps/etapas.jsp")
+    public void requestEtapas() {
+
+        List<Etapa> etapas = dao.requestEtapas();
+
+        models.put("etapas", etapas);
+
     }
-    
+
     @GET
     @Path("etapas/{idEtapa}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response requestEtapa(@PathParam("idEtapa") String idEtapa)
-    {
-        return Response.ok()
-                       .entity( dao.requestEtapa(idEtapa) )
-                       .build();
+    @Controller
+    @View("/jsps/etapa.jsp")
+    public void requestEtapa(@PathParam("idEtapa") String idEtapa) {
+        
+        Etapa etapa = dao.requestEtapa(idEtapa);
+        
+        models.put("etapa", etapa);
     }
-    
-    
-        @GET
+
+    @GET
     @Path("vehiculos")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response requestVehiculos()
-    {
-        return Response.ok()
-                       .entity( new GenericEntity< List<Vehiculo> > ( dao.requestVehiculos() ) {} )                
-                       .build();
+    @Controller
+    @View("/jsps/vehiculos.jsp")
+    public void requestVehiculos() {
+
+        List<Vehiculo> vehiculos = dao.requestVehiculos();
+
+        models.put("vehiculos", vehiculos);
+
     }
-    
-    
+
     @GET
     @Path("vehiculos/{idVehiculo}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response requestVehiculo(@PathParam("idVehiculo") String idVehiculo)
-    {
-        return Response.ok()
-                       .entity( dao.requestVehiculo(idVehiculo) )
-                       .build();
+    @Controller
+    @View("/jsps/vehiculo.jsp")
+    public void requestVehiculo(@PathParam("idVehiculo") String idVehiculo) {
+        
+        Vehiculo vehiculo = dao.requestVehiculo(idVehiculo);
+        
+        models.put("vehiculo", vehiculo);
+        
+        
     }
-    
-    
-    
+
+    @GET
+    @Path("vehiculos/insertarVehiculo")
+    @Controller
+    @View("/jsps/formInsertarVehiculo.jsp")
+    public void formVehiculo() {
+        
+    }
     
     @POST
     @Path("vehiculos")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response requestInsertVehiculo(
-                                        @FormParam("idVehiculo")    String idVehiculo,
-                                        @FormParam("nombreEquipo")  String nombreEquipo,
-                                        @FormParam("tipo")          String tipo,
-                                        @FormParam("potencia")      String potencia,
-                                        @FormParam("piloto")        String piloto,
-                                        @DefaultValue("")
-                                        @FormParam("copiloto")      String copiloto,
-                                        @FormParam("clasificacion") String clasificacion,
-                                        @FormParam("tiempoTotal")   String tiempoTotal
-
-                                       )
-    {
+            @FormParam("idVehiculo") String idVehiculo,
+            @FormParam("nombreEquipo") String nombreEquipo,
+            @FormParam("tipo") String tipo,
+            @FormParam("potencia") String potencia,
+            @FormParam("piloto") String piloto,
+            @DefaultValue("")
+            @FormParam("copiloto") String copiloto,
+            @FormParam("clasificacion") String clasificacion,
+            @FormParam("tiempoTotal") String tiempoTotal
+    ) {
         Optional<String> optVehiculo = dao.postVehiculo(idVehiculo, nombreEquipo, tipo, potencia, piloto, copiloto, clasificacion, tiempoTotal);
-        if ( optVehiculo.isPresent() )
-        {
-          return Response.created( URI.create( optVehiculo.get() ) ).build();
-        }
-        else
-        {
+        if (optVehiculo.isPresent()) {
+            return Response.created(URI.create(optVehiculo.get())).build();
+        } else {
             return Response.serverError().build();
         }
     }
-    
-    
-    @DELETE
-    @Path("vehiculos/{idVehiculo}")
-    public Response requestDeleteVehiculo(@PathParam("idVehiculo") String idVehiculo)
-    {
+
+    @GET
+    @Path("vehiculos/del/{idVehiculo}")
+    public Response requestDeleteVehiculo(@PathParam("idVehiculo") String idVehiculo) {
         dao.deleteVehiculo(idVehiculo);
         return Response.noContent().build();
     }
 
-    
 }
-
-    

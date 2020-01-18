@@ -85,7 +85,7 @@ public class OracleDao implements Dao {
         try (Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT V.ID_VEHICULO, V.NOMBRE_EQUIPO, V.TIPO, V.POTENCIA, V.PILOTO, V.COPILOTO, V.CLASIFICACION, V.TIEMPO_TOTAL "
-                        + "  FROM VEHICULO V")) {
+                        + "  FROM VEHICULO V ORDER BY V.CLASIFICACION")) {
             if (resultSet.next()) {
                 do {
                     Vehiculo v = new Vehiculo();

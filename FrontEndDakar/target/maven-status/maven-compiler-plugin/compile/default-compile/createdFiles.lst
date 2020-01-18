@@ -1,3 +1,4 @@
+com\mycompany\frontenddakar\model\Etapa.class
 com\mycompany\frontenddakar\model\impl\RestClientDao$2.class
 com\mycompany\frontenddakar\JAXRSConfiguration.class
 com\mycompany\frontenddakar\model\impl\RestClientDao$3.class
@@ -8,5 +9,3 @@ com\mycompany\frontenddakar\model\Vehiculo.class
 com\mycompany\frontenddakar\model\Dao.class
 com\mycompany\frontenddakar\model\Resultado.class
 com\mycompany\frontenddakar\resources\DakarResource.class
-com\mycompany\frontenddakar\model\Etapa.class
-com\mycompany\frontenddakar\resources\DakarResource$2.class
