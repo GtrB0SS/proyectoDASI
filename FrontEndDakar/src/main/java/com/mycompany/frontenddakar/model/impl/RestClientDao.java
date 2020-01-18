@@ -26,12 +26,7 @@ import javax.ws.rs.core.Response;
  * @author albertogarciacampo
  */
 public class RestClientDao implements Dao{
-    private static final String URI_ROOT    = "http://localhost:8282/BackEndDakar/dakar";   
-//    private static final String URI_RESULTADOS = "http://localhost:8080/dakar/resultados";
-//    private static final String URI_ETAPAS  = "http://localhost:8080/dakar/etapas";
-//    private static final String URI_ETAPA = "http://localhost:8080/dakar/etapa/{idEtapa}";
-//    private static final String URI_VEHICULOS  = "http://localhost:8080/dakar/vehiculos";
-//    private static final String URI_VEHICULO  = "http://localhost:8080/dakar/vehiculo/{idVehiculo}";
+    private static final String URI_ROOT    = "http://localhost:8080/BackEndDakar/dakar";
     
     
     private Client client;
