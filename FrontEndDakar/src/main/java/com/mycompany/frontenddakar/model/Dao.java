@@ -6,6 +6,7 @@
 package com.mycompany.frontenddakar.model;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -13,11 +14,17 @@ import java.util.List;
  */
 public interface Dao {
     
-    public List<Resultado> selectResultados();
-    public List<Vehiculo> selectVehiculos();
-    public List<Etapa> selectEtapas();
+    public List<Resultado> requestResultados();
+    public List<Vehiculo> requestVehiculos();
+    public List<Etapa> requestEtapas();
     
     
-    public Vehiculo selectVehiculo(String idVehiculo);
-    public Etapa selectEtapa(String idEtapa);
+    public Vehiculo requestVehiculo(String idVehiculo);
+    public Etapa requestEtapa(String idEtapa);
+   
+    public Optional<String> postVehiculo(String idVehiculo, String nombreEquipo, String tipo, String potencia, String piloto, String copiloto, String clasificacion, String tiempoTotal);
+    public void deleteVehiculo(String idVehiculo);
+
+    
+  
 }

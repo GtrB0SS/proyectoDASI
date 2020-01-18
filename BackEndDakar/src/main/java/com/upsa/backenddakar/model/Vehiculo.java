@@ -98,11 +98,14 @@ public class Vehiculo {
         this.tiempoTotal = tiempoTotal;
     }
 
-    
     @Override
     public String toString() {
-        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", nombreEquipo=" + nombreEquipo + ", tipo=" + tipo + ", potencia=" + potencia + ", piloto=" + piloto + ", copiloto=" + copiloto + ", clasificacion=" + clasificacion + '}';
+        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", nombreEquipo=" + nombreEquipo + ", tipo=" + tipo + ", potencia=" + potencia + ", piloto=" + piloto + ", copiloto=" + copiloto + ", clasificacion=" + clasificacion + ", tiempoTotal=" + tiempoTotal + '}';
     }
+
+    
+    
+    
     
     
     

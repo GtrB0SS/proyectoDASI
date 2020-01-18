@@ -43,10 +43,10 @@ public class OracleDao implements Dao {
                         + "  FROM RESULTADO R, VEHICULO V, ETAPA E "
                         + "                                     WHERE R.ID_ETAPA = E.ID_ETAPA "
                         + "                                     AND   R.ID_VEHICULO = V.ID_VEHICULO                              ")) {
-            
+
             if (resultSet.next()) {
                 do {
-                    
+
                     Vehiculo v = new Vehiculo();
                     v.setIdVehiculo(resultSet.getString(3));
                     v.setNombreEquipo(resultSet.getString(4));
@@ -181,13 +181,74 @@ public class OracleDao implements Dao {
                 vehiculo.setClasificacion(resultSet.getString(7));
                 vehiculo.setTiempoTotal(resultSet.getString(8));
 
-            }else{
+            } else {
                 throw new VehiculoNotFoundException(idVehiculo);
             }
         } catch (SQLException sqlException) {
             throw new SqlAppException(sqlException);
         }
         return vehiculo;
+    }
+
+    @Override
+    public Vehiculo deleteVehiculo(String idVehiculo) throws AppException {
+
+        Vehiculo v = this.selectVehiculo(idVehiculo);
+        String SQL_SELECT = "DELETE "
+                + "  FROM VEHICULO V"
+                + "                                     WHERE V.ID_VEHICULO = ?   ";
+
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_SELECT)) {
+            statement.setString(1, idVehiculo);
+
+            int update = statement.executeUpdate();
+            if (update <= 0) {
+                throw new VehiculoNotFoundException(idVehiculo);
+
+            }
+        } catch (SQLException sqlException) {
+            throw new SqlAppException(sqlException);
+        }
+
+        return v;
+
+    }
+
+    @Override
+    public Vehiculo insertVehiculo(String idVehiculo, String nombreEquipo, String tipo, int potencia, String piloto, String copiloto, String clasificacion, String tiempoTotal) throws AppException {
+
+        Vehiculo v = new Vehiculo();
+        String SQL_INSERT = "INSERT INTO VEHICULO(ID_VEHICULO, NOMBRE_EQUIPO, TIPO, POTENCIA, PILOTO, COPILOTO, CLASIFICACION, TIEMPO_TOTAL)"
+                + "                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
+            statement.setString(1, idVehiculo);
+            statement.setString(2, nombreEquipo);
+            statement.setString(3, tipo);
+            statement.setInt(4, potencia);
+            statement.setString(5, piloto);
+            statement.setString(6, copiloto);
+            statement.setString(7, clasificacion);
+            statement.setString(8, tiempoTotal);
+            
+            v.setIdVehiculo(idVehiculo);
+            v.setClasificacion(clasificacion);
+            v.setCopiloto(copiloto);
+            v.setNombreEquipo(nombreEquipo);
+            v.setPotencia(potencia);
+            v.setTiempoTotal(tiempoTotal);
+            v.setTipo(tipo);
+            v.setPiloto(piloto);
+            
+            statement.executeUpdate();
+            
+            return v;
+
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException);
+            throw new SqlAppException(sqlException);
+        }
     }
 
 }
