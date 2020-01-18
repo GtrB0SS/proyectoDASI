@@ -8,6 +8,10 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
+import javax.mvc.Controller;
+import javax.mvc.Models;
+import javax.mvc.View;
+import javax.mvc.binding.BindingResult;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -25,21 +29,32 @@ import javax.ws.rs.core.Response;
  *
  * @author 
  */
-@Path("dakar")
+@Path("/dakar")
 public class DakarResource {
     
     
      @Inject
     private Dao dao;
+     
+     @Inject
+    private Models models;
+    
+    @Inject
+    private BindingResult bindingResult;
     
     @GET
-    @Path("resultados")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response requestResultados()
+    @Controller
+    @Path("/resultados")
+    @View("/jsps/resultados.jsp")
+    public void requestResultados()
     {
-        return Response.ok()
-                       .entity( new GenericEntity< List<Resultado> > ( dao.requestResultados() ) {} )                
-                       .build();
+        List<Resultado> resultados = dao.requestResultados();
+        
+        models.put("resultados", resultados);
+        
+//        return Response.ok()
+//                       .entity( new GenericEntity< List<Resultado> > ( dao.requestResultados() ) {} )                
+//                       .build();
     }
     
         @GET

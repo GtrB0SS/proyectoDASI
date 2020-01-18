@@ -18,6 +18,17 @@
     
     <dependencies>
         <dependency>
+            <groupId>javax.mvc</groupId>
+            <artifactId>javax.mvc-api</artifactId>
+            <version>1.0.0-RC1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.krazo</groupId>
+            <artifactId>krazo-jersey</artifactId>
+            <version>1.0.0-RC1</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>${jakartaee}</version>

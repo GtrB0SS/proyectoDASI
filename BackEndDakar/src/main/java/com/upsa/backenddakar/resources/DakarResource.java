@@ -41,22 +41,6 @@ public class DakarResource {
     @Context
     private UriInfo uriInfo;
 
-//    public Link fromAlumno(Alumno alumno)
-//    {
-//              
-//        
-//        UriBuilder uriBuilder = uriInfo.getBaseUriBuilder();
-//        URI alumnoURI = uriBuilder.path("/alumnos/{expediente}")
-//                                  .resolveTemplate("expediente", alumno.getExpediente())
-//                                  .build();                
-//                                  //.path(AlumnosResource.class)
-//                                  //.path( AlumnosResource.class.getDeclaredMethod("selectAlumno", String.class, String.class) )
-//                
-//        return Link.fromUri(alumnoURI)
-//                   .rel("self")
-//                   .type( MediaType.APPLICATION_JSON )
-//                   .build( alumno.getExpediente() );
-//    }
     //Parte para ver resultados y resultado individual
     @Path("/resultados")
     @GET
