@@ -74,7 +74,7 @@ public class DakarResource {
     }
     
     
-      @GET
+    @GET
     @Path("vehiculos/{idVehiculo}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response requestVehiculo(@PathParam("idVehiculo") String idVehiculo)
