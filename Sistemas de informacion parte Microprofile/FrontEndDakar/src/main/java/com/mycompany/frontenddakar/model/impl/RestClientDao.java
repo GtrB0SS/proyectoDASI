@@ -12,15 +12,8 @@ import com.mycompany.frontenddakar.model.Vehiculo;
 import com.mycompany.frontenddakar.services.BackendService;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -29,58 +22,29 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
  * @author albertogarciacampo
  */
 public class RestClientDao implements Dao{
-//    private static final String URI_ROOT    = "http://localhost:8080/BackEndDakar/dakar";
-//    
-//    
-//    private Client client;
-//    private WebTarget wtRoot;
-//    private WebTarget wtResultados;
-//    private WebTarget wtEtapas;
-//    private WebTarget wtEtapa;
-//    private WebTarget wtVehiculos;
-//    private WebTarget wtVehiculo;
+
 
     @Inject
     @RestClient 
     private BackendService backend;
 
-    
-//    @PostConstruct
-//    public void init(){
-//        ClientBuilder clientBuilder = ClientBuilder.newBuilder();
-//        this.client = clientBuilder.build();
-//        
-//        wtRoot = client.target(URI_ROOT);
-//        wtResultados = wtRoot.path("resultados" );
-//        wtEtapas  = wtRoot.path("etapas");
-//        wtEtapa = wtRoot.path("etapas/{idEtapa}");
-//        wtVehiculos = wtRoot.path("vehiculos");
-//        wtVehiculo = wtRoot.path("vehiculos/{idVehiculo}");
-//    }
+ 
     
 
     @Override
     public List<Resultado> requestResultados() {
-//        return wtResultados.request( MediaType.APPLICATION_JSON )
-//                        .get( new GenericType< List<Resultado> > () {} );
         return backend.selectResultados();
     }
     
     
     @Override
     public List<Etapa> requestEtapas() {
-//        return wtEtapas.request( MediaType.APPLICATION_JSON )
-//                        .get( new GenericType< List<Etapa> > () {} );
-
         return backend.selectEtapas();
     }
 
 
     @Override
     public Etapa requestEtapa(String idEtapa) {
-//        Response response =  wtEtapa.resolveTemplate("idEtapa", idEtapa)
-//                                     .request( MediaType.APPLICATION_JSON )                       
-//                                     .get( );
         Response response = backend.selectEtapa(idEtapa);
         
         switch ( response.getStatus() )
@@ -93,20 +57,13 @@ public class RestClientDao implements Dao{
     
     
      @Override
-    public List<Vehiculo> requestVehiculos() 
-    {
-//        return wtVehiculos.request( MediaType.APPLICATION_JSON )
-//                        .get( new GenericType< List<Vehiculo> > () {} );
+    public List<Vehiculo> requestVehiculos(){
         return backend.selectVehiculos();
     }
 
     
      @Override
-    public Vehiculo requestVehiculo(String idVehiculo) 
-    {
-//        Response response =  wtVehiculo.resolveTemplate("idVehiculo", idVehiculo)
-//                                     .request( MediaType.APPLICATION_JSON )                       
-//                                     .get( );
+    public Vehiculo requestVehiculo(String idVehiculo) {
         Response response = backend.selectVehiculo(idVehiculo);
         
         switch ( response.getStatus() )
@@ -131,10 +88,6 @@ public class RestClientDao implements Dao{
         form.param("tiempoTotal", tiempoTotal); 
         
         
-//        Entity entity = Entity.form(form);
-//        
-//        Response response = wtVehiculos.request()
-//                                     .post( entity );
         Response response = backend.requestInsertVehiculo(form);
         
         
@@ -150,11 +103,7 @@ public class RestClientDao implements Dao{
     
 
     @Override
-    public void deleteVehiculo(String idVehiculo) 
-    {
-//        Response response = wtVehiculo.resolveTemplate("idVehiculo", idVehiculo)
-//                                    .request()
-//                                    .delete();
+    public void deleteVehiculo(String idVehiculo) {
         Response response = backend.deleteVehiculo(idVehiculo);
         
         switch ( response.getStatus() )
