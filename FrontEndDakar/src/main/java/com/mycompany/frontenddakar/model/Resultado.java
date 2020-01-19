@@ -7,7 +7,7 @@ package com.mycompany.frontenddakar.model;
 
 /**
  *
- * @author Carlos
+ * @author albertogarciacampo
  */
 public class Resultado {
     private String idResultado;

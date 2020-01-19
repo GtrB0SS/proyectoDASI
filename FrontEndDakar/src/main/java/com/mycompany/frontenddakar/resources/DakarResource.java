@@ -1,5 +1,6 @@
 package com.mycompany.frontenddakar.resources;
 
+import com.mycompany.frontenddakar.forms.FormularioVehiculoBean;
 import com.mycompany.frontenddakar.model.Dao;
 import com.mycompany.frontenddakar.model.Etapa;
 import com.mycompany.frontenddakar.model.Resultado;
@@ -12,6 +13,8 @@ import javax.mvc.Controller;
 import javax.mvc.Models;
 import javax.mvc.View;
 import javax.mvc.binding.BindingResult;
+import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -27,7 +30,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author
+ * @author albertogarciacampo
  */
 @Path("/dakar")
 public class DakarResource {
@@ -40,6 +43,14 @@ public class DakarResource {
 
     @Inject
     private BindingResult bindingResult;
+    
+    @GET
+    @Controller
+    @Path("")
+    @View("/jsps/index.jsp")
+    public void index() {
+
+    }
 
     @GET
     @Controller
@@ -110,31 +121,29 @@ public class DakarResource {
     
     @POST
     @Path("vehiculos")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response requestInsertVehiculo(
-            @FormParam("idVehiculo") String idVehiculo,
-            @FormParam("nombreEquipo") String nombreEquipo,
-            @FormParam("tipo") String tipo,
-            @FormParam("potencia") String potencia,
-            @FormParam("piloto") String piloto,
-            @DefaultValue("")
-            @FormParam("copiloto") String copiloto,
-            @FormParam("clasificacion") String clasificacion,
-            @FormParam("tiempoTotal") String tiempoTotal
-    ) {
-        Optional<String> optVehiculo = dao.postVehiculo(idVehiculo, nombreEquipo, tipo, potencia, piloto, copiloto, clasificacion, tiempoTotal);
-        if (optVehiculo.isPresent()) {
-            return Response.created(URI.create(optVehiculo.get())).build();
-        } else {
-            return Response.serverError().build();
+    @Controller
+    public String requestInsertVehiculo(@Valid @BeanParam FormularioVehiculoBean fvb) {
+        
+        if ( bindingResult.isFailed() )
+        {
+            models.put("errores", bindingResult.getAllMessages());
+            models.put("vehiculo", fvb);
+            return "/jsps/formInsertarVehiculo.jsp";            
         }
+        
+        
+        Optional<String> optVehiculo = dao.postVehiculo(fvb.getIdVehiculo(), fvb.getNombreEquipo(), fvb.getTipo(), fvb.getPotencia(), fvb.getPiloto(), fvb.getCopiloto(), fvb.getClasificacion(), fvb.getTiempoTotal());
+        
+        return "redirect:/dakar/vehiculos";
+        
     }
 
     @GET
     @Path("vehiculos/del/{idVehiculo}")
-    public Response requestDeleteVehiculo(@PathParam("idVehiculo") String idVehiculo) {
+    @Controller
+    public String requestDeleteVehiculo(@PathParam("idVehiculo") String idVehiculo) {
         dao.deleteVehiculo(idVehiculo);
-        return Response.noContent().build();
+        return "redirect:/dakar/vehiculos";
     }
 
 }

@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-      <body>
+    <body>
         <h2>Lista de Vehiculos que participan en la prueba</h2>
 
         <table style="border: solid black 1px;">
@@ -24,15 +24,15 @@
                     <th style="border: solid black 1px;">Piloto</th>
                     <th style="border: solid black 1px;">Copiloto</th>
                     <th style="border: solid black 1px;">Tiempo Total</th>
-                    <td style="border: solid black 1px;">Descalificar</td>
+                    <td style="border: solid black 1px;">Acciones</td>
 
-                    
+
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="vehiculo" items="${vehiculos}">
-                     <c:url var="urlDelVehiculo" value="/dakar/vehiculos/del/${vehiculo.idVehiculo}"/>
-                     <c:url var="urlViewVehiculo" value="/dakar/vehiculos/${vehiculo.idVehiculo}"/>
+                    <c:url var="urlDelVehiculo" value="/dakar/vehiculos/del/${vehiculo.idVehiculo}"/>
+                    <c:url var="urlViewVehiculo" value="/dakar/vehiculos/${vehiculo.idVehiculo}"/>
                     <tr>
                         <td style="border: solid black 1px;">${vehiculo.clasificacion}</td>
                         <td style="border: solid black 1px;"><a href="${urlViewVehiculo}">${vehiculo.idVehiculo}</a></td>
@@ -43,13 +43,14 @@
                         <td style="border: solid black 1px;">${vehiculo.tiempoTotal}</td>
                         <td style="border: solid black 1px;"><a href="${urlDelVehiculo}">Descalificar</a></td>
 
-                    
+
                     </tr>
                 </c:forEach> 
-                    <c:url var="urlAddVehiculo" value="../dakar/vehiculos"/><%-- No se cual es la url de añadir vehiculo--%>
 
-                    
+
             </tbody>
         </table>
+        <c:url var="insertVehiculo" value="/dakar/vehiculos/insertarVehiculo"/>
+        <p><a href="${insertVehiculo}">Registrar un nuevo vehiculo</a></p>
     </body>
 </html>

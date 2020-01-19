@@ -3,36 +3,75 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.frontenddakar.model;
+package com.mycompany.frontenddakar.forms;
+
+import javax.mvc.binding.MvcBinding;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.FormParam;
 
 /**
  *
- * @author albertogarciacampo
+ * @author Carlos
  */
-public class Vehiculo {
-    
+public class FormularioVehiculoBean {
+    @NotNull
+    @NotBlank
+    @Size(min= 1, max = 10)
+    @FormParam("idVehiculo")
+    @MvcBinding
     private String idVehiculo;
+    
+    @NotNull
+    @NotBlank
+    @Size(min= 2, max = 100)
+    @FormParam("nombreEquipo")
+    @MvcBinding
     private String nombreEquipo;
+    
+    @NotNull
+    @NotBlank
+    @Size(min= 1, max = 100)
+    @FormParam("tipo")
+    @MvcBinding
     private String tipo;
-    private int potencia;
+    
+    @NotNull
+    @NotBlank
+    @Size(min= 2, max = 100)
+    @FormParam("potencia")
+    @MvcBinding
+    private String potencia;
+    
+    @NotNull
+    @NotBlank
+    @Size(min= 2, max = 10)
+    @FormParam("piloto")
+    @MvcBinding
     private String piloto;
+    
+    
+    @Size(min= 2, max = 100)
+    @FormParam("copiloto")
+    @DefaultValue("")
+    @MvcBinding
     private String copiloto;
+    
+    @NotNull
+    @NotBlank
+    @Size(min= 1, max = 100)
+    @FormParam("clasificacion")
+    @MvcBinding
     private String clasificacion;
+    
+    @NotNull
+    @NotBlank
+    @Size(min= 1, max = 100)
+    @FormParam("tiempoTotal")
+    @MvcBinding
     private String tiempoTotal;
-
-    public Vehiculo() {
-    }
-
-    public Vehiculo(String idVehiculo, String nombreEquipo, String tipo, int potencia, String piloto, String copiloto, String clasificacion, String tiempoTotal) {
-        this.idVehiculo = idVehiculo;
-        this.nombreEquipo = nombreEquipo;
-        this.tipo = tipo;
-        this.potencia = potencia;
-        this.piloto = piloto;
-        this.copiloto = copiloto;
-        this.clasificacion = clasificacion;
-        this.tiempoTotal = tiempoTotal;
-    }
 
     public String getIdVehiculo() {
         return idVehiculo;
@@ -58,11 +97,11 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
-    public int getPotencia() {
+    public String getPotencia() {
         return potencia;
     }
 
-    public void setPotencia(int potencia) {
+    public void setPotencia(String potencia) {
         this.potencia = potencia;
     }
 
@@ -97,13 +136,6 @@ public class Vehiculo {
     public void setTiempoTotal(String tiempoTotal) {
         this.tiempoTotal = tiempoTotal;
     }
-
-    
-    @Override
-    public String toString() {
-        return "Vehiculo{" + "idVehiculo=" + idVehiculo + ", nombreEquipo=" + nombreEquipo + ", tipo=" + tipo + ", potencia=" + potencia + ", piloto=" + piloto + ", copiloto=" + copiloto + ", clasificacion=" + clasificacion + '}';
-    }
-    
     
     
 }
