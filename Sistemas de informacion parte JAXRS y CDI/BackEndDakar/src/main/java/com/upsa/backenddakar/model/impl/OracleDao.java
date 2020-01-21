@@ -194,14 +194,21 @@ public class OracleDao implements Dao {
     public Vehiculo deleteVehiculo(String idVehiculo) throws AppException {
 
         Vehiculo v = this.selectVehiculo(idVehiculo);
-        String SQL_SELECT = "DELETE "
+        String SQL_DELETEVEHICULO = "DELETE "
                 + "  FROM VEHICULO V"
                 + "                                     WHERE V.ID_VEHICULO = ?   ";
+        String SQL_DELETERESULTADO = "DELETE "
+                + "  FROM RESULTADO R"
+                + "                                     WHERE R.ID_VEHICULO = ?   ";
 
         try (Connection connection = dataSource.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_SELECT)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_DELETEVEHICULO);
+                PreparedStatement statement2 = connection.prepareStatement(SQL_DELETERESULTADO)) {
             statement.setString(1, idVehiculo);
-
+            statement2.setString(1, idVehiculo);
+            
+            statement2.executeUpdate();
+            
             int update = statement.executeUpdate();
             if (update <= 0) {
                 throw new VehiculoNotFoundException(idVehiculo);

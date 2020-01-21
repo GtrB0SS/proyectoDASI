@@ -27,4 +27,5 @@ public interface Dao {
     public Vehiculo deleteVehiculo(String idVehiculo) throws AppException;
 
     public Vehiculo insertVehiculo(String idVehiculo, String nombreEquipo, String tipo, int potencia, String piloto, String copiloto, String clasificacion, String tiempoTotal) throws AppException;
+    
 }

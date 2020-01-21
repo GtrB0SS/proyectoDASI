@@ -5,7 +5,7 @@
     <artifactId>BackEndDakar</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>BackEndDakar-1.0-SNAPSHOT</name>
+    <name>BackEndDakar</name>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -28,6 +28,12 @@
             <artifactId>javaee-api</artifactId>
             <version>${jakartaee}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>3.0</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
     
