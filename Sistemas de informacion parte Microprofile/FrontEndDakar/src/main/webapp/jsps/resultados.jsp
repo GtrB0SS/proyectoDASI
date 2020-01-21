@@ -20,7 +20,7 @@
             <c:url var="urlViewVehiculo" value="/dakar/vehiculos/${resultado.vehiculo.idVehiculo}"/>
             <c:url var="urlViewEtapa" value="/dakar/etapas/${resultado.etapa.idEtapa}"/>
 
-            <c:choose>
+             <c:choose>
                 <c:when test="${resultado.etapa.idEtapa != lasRes.etapa.idEtapa}">
                 </tbody>
             </table>
@@ -44,17 +44,16 @@
                 <c:otherwise></c:otherwise>    
             </c:choose>
 
-
             <tr>
                 <td style="border: solid black 1px;"><a href="${urlViewVehiculo}">${resultado.vehiculo.idVehiculo}</a></td>
                 <td style="border: solid black 1px;">${resultado.vehiculo.nombreEquipo}</td>
                 <td style="border: solid black 1px;">${resultado.vehiculo.piloto}</td>
                 <td style="border: solid black 1px;">${resultado.tiempo}</td>
             </tr>
-            <c:set var = "lasRes" scope = "page" value = "${resultado}"/>
+            <c:set var = "lasRes" scope = "application" value = "${resultado}"/>
         </c:forEach> 
     </tbody>
 </table>
-      
+
 </body>
 </html>

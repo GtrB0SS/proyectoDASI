@@ -5,7 +5,6 @@ import com.mycompany.frontenddakar.model.Dao;
 import com.mycompany.frontenddakar.model.Etapa;
 import com.mycompany.frontenddakar.model.Resultado;
 import com.mycompany.frontenddakar.model.Vehiculo;
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
@@ -15,18 +14,10 @@ import javax.mvc.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
 import javax.ws.rs.BeanParam;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  *
@@ -49,7 +40,6 @@ public class DakarResource {
     @Path("")
     @View("/jsps/index.jsp")
     public void index() {
-
     }
 
     @GET
@@ -58,7 +48,7 @@ public class DakarResource {
     @View("/jsps/resultados.jsp")
     public void requestResultados() {
         List<Resultado> resultados = dao.requestResultados();
-
+        
         models.put("resultados", resultados);
 
     }

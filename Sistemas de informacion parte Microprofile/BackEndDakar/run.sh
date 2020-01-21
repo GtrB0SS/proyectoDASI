@@ -1,2 +1,2 @@
 
-docker container run -d -e DATABASE_HOST=hiseuibd01.upsa.local -e DATABASE_PORT=1521 -e DATABASE_SID=alumnos -e DATABASE_USER=alumno2010 -e DATABASE_PWD=alumno2010 -p 80:8080 --name backend --network oracle-network backend
+docker container run -d -e DATABASE_HOST=oracle11gXE -e DATABASE_PORT=1521 -e DATABASE_SID=xe -e DATABASE_USER=carlos -e DATABASE_PWD=carlos --name backend --network oracle-network backend

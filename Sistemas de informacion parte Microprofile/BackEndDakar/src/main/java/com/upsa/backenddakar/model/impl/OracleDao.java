@@ -42,7 +42,7 @@ public class OracleDao implements Dao {
                 ResultSet resultSet = statement.executeQuery("SELECT R.ID_RESULTADO, R.TIEMPO, V.ID_VEHICULO, V.NOMBRE_EQUIPO, V.TIPO, V.POTENCIA, V.PILOTO, V.COPILOTO, V.CLASIFICACION, V.TIEMPO_TOTAL, E.ID_ETAPA, E.FECHA, E.RECORRIDO "
                         + "  FROM RESULTADO R, VEHICULO V, ETAPA E "
                         + "                                     WHERE R.ID_ETAPA = E.ID_ETAPA "
-                        + "                                     AND   R.ID_VEHICULO = V.ID_VEHICULO                              ")) {
+                        + "                                     AND   R.ID_VEHICULO = V.ID_VEHICULO                              ORDER BY E.ID_ETAPA")) {
 
             if (resultSet.next()) {
                 do {

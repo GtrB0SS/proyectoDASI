@@ -11,9 +11,9 @@ import javax.ws.rs.core.Application;
 
 @DataSourceDefinition(name = "java:app/jdbc/database",
                       className = "oracle.jdbc.pool.OracleDataSource",                      
-                      url="jdbc:oracle:thin:@localhost:1521:xe",
+                      url="jdbc:oracle:thin:@${ENV=DATABASE_HOST}:${ENV=DATABASE_PORT}:${ENV=DATABASE_SID}",
                       user = "${ENV=DATABASE_USER}",
-                      password = "carlos",
+                      password = "${ENV=DATABASE_PWD}",
                       minPoolSize = 1,
                       maxPoolSize = 3
                      )
