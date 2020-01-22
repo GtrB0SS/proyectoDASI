@@ -9,17 +9,17 @@ import javax.ws.rs.core.Application;
  * @author Juneau
  */
 
-@DataSourceDefinition(name = "java:app/jdbc/database",
-                      className = "oracle.jdbc.pool.OracleDataSource",                      
-                      url="jdbc:oracle:thin:@${ENV=DATABASE_HOST}:${ENV=DATABASE_PORT}:${ENV=DATABASE_SID}",
-                      user = "${ENV=DATABASE_USER}",
-                      password = "${ENV=DATABASE_PWD}",
-                      minPoolSize = 1,
-                      maxPoolSize = 3
-                     )
+//@DataSourceDefinition(name = "java:app/jdbc/database",
+//                      className = "oracle.jdbc.pool.OracleDataSource",                      
+//                      url="jdbc:oracle:thin:@oracle:1521:xe",
+//                      user = "carlos",
+//                      password = "carlos",
+//                      minPoolSize = 1,
+//                      maxPoolSize = 3
+//                     )
 
 
-/*
+
 @DataSourceDefinition(name = "java:app/jdbc/database",
                       className = "oracle.jdbc.pool.OracleDataSource",                      
                       url="jdbc:oracle:thin:@${ENV=DATABASE_HOST}:${ENV=DATABASE_PORT}:${ENV=DATABASE_SID}",
@@ -28,7 +28,7 @@ import javax.ws.rs.core.Application;
                       minPoolSize = 1,
                       maxPoolSize = 3
                      )
-*/
+
 
 @ApplicationPath("/")
 public class JAXRSConfiguration extends Application {
